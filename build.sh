@@ -19,6 +19,8 @@ west blobs fetch hal_espressif
 # For <= Zephyr v3.6
 west build -b xiao_esp32s3 ./ -p always
 
+# west build -b xiao_esp32c3 ./ -p always
+
 export ESPTOOL_PORT=/dev/ttyACM0
 west flash
 west espressif monitor -p /dev/ttyACM0

@@ -1,16 +1,36 @@
-#include <zephyr/dt-bindings/input/input-event-codes.h>
-
 / {
 aliases {
-	touch1 = &touch1;
 };
 };
 
-&touch {
-	status = "okay";
-	touch1: touch_1 {
-		channel-num = <1>;
-		channel-sens = <20>;
-		zephyr,code = <INPUT_KEY_0>;	// 11
+
+&pinctrl {
+	pcnt_default: pcnt_default {
+		group1 {
+			pinmux = <PCNT0_CH0SIG_GPIO14>,
+					<PCNT0_CH0CTRL_GPIO15>;
+			bias-pull-up;
+		};
 	};
 };
+
+&pcnt {
+    pinctrl-0 = <&pcnt_default>;
+    pinctrl-names = "default";
+    status = "okay";
+    #address-cells = <1>;
+    #size-cells = <0>;
+    unit0@0 {
+      reg = <0>;
+      #address-cells = <1>;
+      #size-cells = <0>;
+      filter = <100>;
+      channelA@0 {
+          reg = <0>;
+          sig-pos-mode = <2>;
+          sig-neg-mode = <1>;
+          ctrl-h-mode = <0>;
+          ctrl-l-mode = <1>;
+      };
+    };
+  };

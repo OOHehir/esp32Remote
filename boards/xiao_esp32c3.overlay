@@ -1,0 +1,17 @@
+
+/{
+aliases {
+  	led0 = &myled0;
+};
+
+leds {
+	status = "okay";
+	compatible = "gpio-leds";
+	myled0: led_0 {
+		gpios = <&gpio0 13 GPIO_ACTIVE_HIGH>;
+	};
+};
+
+};
+
+// ESP32C3 doesn't have the PCNT peripheral

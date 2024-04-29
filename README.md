@@ -1,7 +1,7 @@
-# esp32Touch
-Simple 'out of tree' project to test the touch feature on the [Seeed XIAO ESP32 S3](https://docs.zephyrproject.org/latest/boards/seeed/xiao_esp32s3/doc/index.html) using the Zephyr RTOS. It should be straightforward to adapt to other ESP32S3 boards.
+# esp32Remote
+'Out of tree' project that allows a user , using a rotary switch to set a value & have it relayed via MQTT.
 
-When a 'touch' event is detected on either touch1, touch2 or touch 3 the LED connected to GPIO 5 is toggled.
+Uses the [Seeed XIAO ESP32 S3](https://docs.zephyrproject.org/latest/boards/seeed/xiao_esp32s3/doc/index.html) using the Zephyr RTOS. It should be straightforward to adapt to other ESP32S3 boards.
 
 This assumes you've already installed & configured Zephyr.
 
@@ -35,9 +35,6 @@ Build application & bootloader
 
 ## Modify config
  west build -t guiconfig --board xiao_esp32s3/esp32s3/procpu
-
- ## Build with twister
- west twister -b xiao_esp32s3/esp32s3/procpu -t build /zephyr/samples/hello_world
 
 ## Pinout:
 
