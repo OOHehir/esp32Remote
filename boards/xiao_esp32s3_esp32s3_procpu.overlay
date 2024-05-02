@@ -7,8 +7,8 @@ aliases {
 &pinctrl {
 	pcnt_default: pcnt_default {
 		group1 {
-			pinmux = <PCNT0_CH0SIG_GPIO14>,
-					<PCNT0_CH0CTRL_GPIO15>;
+			pinmux = <PCNT0_CH0SIG_GPIO1>,
+					     <PCNT0_CH0CTRL_GPIO2>;
 			bias-pull-up;
 		};
 	};
