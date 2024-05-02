@@ -1,6 +1,7 @@
 / {
-aliases {
-};
+  aliases {
+    pcnt0 = &pcnt;
+  };
 };
 
 &pinctrl {
