@@ -1,8 +1,11 @@
 # esp32Remote
-'Out of tree' project that allows a user , using a rotary switch to set a value & have it relayed via MQTT.
+'Out of tree' project that modifies a value when a rotary encoder is rotated. Sends the value via MQTT.
 
 Uses the [Seeed XIAO ESP32 S3](https://docs.zephyrproject.org/latest/boards/seeed/xiao_esp32s3/doc/index.html) using the Zephyr RTOS. It should be straightforward to adapt to other ESP32S3 boards.
 
+Uses the [ESP32 PCNT peripheral](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/peripherals/pcnt.html) to count the encoder pulses.
+
+## Setup
 This assumes you've already installed & configured Zephyr.
 
 ## Working version
