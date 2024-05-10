@@ -46,6 +46,9 @@ Build application & bootloader
 
 ![ESP32S3](images/esp32s3_pinout.jpeg)
 
+## Rotary encoder:
+![Rotary encoder](images/rotary_encoder.jpeg)
+
 ## Pin level:
 ### Clockwise Rotation
 Blue: SIG/ GPIO1, Yellow: CTRL/ GPIO3
