@@ -13,7 +13,7 @@
 
 LOG_MODULE_REGISTER(main, LOG_LEVEL_DBG);
 
-#define SLEEP_TIME_MS   1000
+#define SLEEP_TIME_MS 50
 
 #define LED0_NODE DT_ALIAS(led0)
 #if !DT_NODE_HAS_STATUS(LED0_NODE, okay)
@@ -87,12 +87,30 @@ int main(void) {
         return 0;
     }
 
-    while (1) {
-        struct sensor_value rotation = {0};
+    struct sensor_value old_rotation = {0};
+    int rc = 0;
+    int result = 0;
 
-        sensor_sample_fetch(dev);
-        sensor_channel_get(dev, SENSOR_CHAN_ROTATION, &rotation);
-        printf("%d", rotation.val1);
+    while (1) {
+        struct sensor_value rotation {0};
+
+        rc = sensor_sample_fetch(dev);
+        if (rc != 0) {
+          printf("Failed to fetch sample (%d)\n", rc);
+          return 0;
+        }
+
+        rc = sensor_channel_get(dev, SENSOR_CHAN_ROTATION, &rotation);
+        if (rc != 0) {
+          printf("Failed to get data (%d)\n", rc);
+          return 0;
+        }
+
+        if (rotation.val1 > 0) {
+            printf("%d\n", ++result);
+        } else if (rotation.val1 < 0) {
+            printf("%d\n", --result);
+        }
 
         k_msleep(SLEEP_TIME_MS);
     }
