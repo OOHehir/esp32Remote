@@ -1,4 +1,4 @@
-# esp32Remote
+# esp32_pcnt
 'Out of tree' project that modifies a value when a rotary encoder is rotated. Sends the value via MQTT.
 
 Uses the [Seeed XIAO ESP32 S3](https://docs.zephyrproject.org/latest/boards/seeed/xiao_esp32s3/doc/index.html) using the Zephyr RTOS. It should be straightforward to adapt to other ESP32S3 boards.
