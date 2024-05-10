@@ -1,6 +1,18 @@
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+
 / {
   aliases {
     pcnt0 = &pcnt;
+    sw0 = &button0;
+  };
+
+  buttons {
+    compatible = "gpio-keys";
+    button0: button_0 {
+      gpios = <&gpio0 5 GPIO_ACTIVE_LOW>;     // Button is pulled up internally
+      zephyr,code = <INPUT_KEY_0>;
+      label = "Rotary button";
+    };
   };
 };
 
@@ -9,7 +21,7 @@
 		group1 {
 			pinmux = <PCNT0_CH0SIG_GPIO1>,
 					     <PCNT0_CH0CTRL_GPIO3>;
-			bias-pull-up;
+			// bias-pull-up;                      // This encoder pulled up internally
 		};
 	};
 };
@@ -33,4 +45,4 @@
           ctrl-l-mode = <1>;
       };
     };
-  };
+};
