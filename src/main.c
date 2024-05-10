@@ -13,7 +13,7 @@
 
 LOG_MODULE_REGISTER(main, LOG_LEVEL_DBG);
 
-#define SLEEP_TIME_MS 50
+#define SLEEP_TIME_MS 250
 
 #define LED0_NODE DT_ALIAS(led0)
 #if !DT_NODE_HAS_STATUS(LED0_NODE, okay)
@@ -87,14 +87,12 @@ int main(void) {
         return 0;
     }
 
-    struct sensor_value old_rotation = {0};
-    int rc = 0;
-    int result = 0;
+    int old_result = 0;
 
     while (1) {
-        struct sensor_value rotation {0};
+        struct sensor_value rotation = {0};
 
-        rc = sensor_sample_fetch(dev);
+        int rc = sensor_sample_fetch(dev);
         if (rc != 0) {
           printf("Failed to fetch sample (%d)\n", rc);
           return 0;
@@ -106,13 +104,11 @@ int main(void) {
           return 0;
         }
 
-        if (rotation.val1 > 0) {
-            printf("%d\n", ++result);
-        } else if (rotation.val1 < 0) {
-            printf("%d\n", --result);
+        if (rotation.val1 != old_result) {
+            gpio_pin_toggle_dt(&led);
+            old_result = rotation.val1;
+            printf("Rotation: %d\n", rotation.val1);
         }
-
-        k_msleep(SLEEP_TIME_MS);
     }
     return 0;
 }
